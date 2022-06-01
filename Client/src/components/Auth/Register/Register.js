@@ -14,9 +14,7 @@ const Register = () => {
         email: "",
         username: "",
         password: "",
-        hospital: "",
-        jobTitle: "",
-        approval: ""
+        cpassword: ""
     })
 
     const handleChange = (e) => {
@@ -67,6 +65,13 @@ const Register = () => {
                     <div className='register-input-root' >
                         <img className='register-input-icon' src={IconPassword} alt="icon" />
                         <input className='register-input' name="password" value={fieldData.password} type="text" placeholder="password" onChange={handleChange} />
+                    </div>
+                </div>
+                <div className='input-div' >
+
+                    <div className='register-input-root' >
+                        <img className='register-input-icon' src={IconPassword} alt="icon" />
+                        <input className='register-input' name="password" value={fieldData.cpassword} type="text" placeholder="conform password" onChange={handleChange} />
                     </div>
                 </div>
 

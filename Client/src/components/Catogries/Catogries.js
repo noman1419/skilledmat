@@ -1,8 +1,9 @@
 import React from 'react'
-
+import useStyles from './Style'
 const Catogries = () => {
+    const classes = useStyles();
     return (
-        <div>Catogries</div>
+        <div className={classes.catogriesRoot}></div>
     )
 }
 

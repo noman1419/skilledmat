@@ -1,8 +1,9 @@
 import React from 'react'
-
+import useStyles from './Style'
 const Notifications = () => {
+    const classes = useStyles();
     return (
-        <div>Notifications</div>
+        <div className={classes.notificationRoot}></div>
     )
 }
 
