@@ -1,0 +1,51 @@
+.root {
+  height: 90vh;
+  width: 100vw;
+  margin: 20px;
+}
+
+.form-root {
+}
+.form-block-outside {
+  margin: auto;
+  max-width: 500px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.single-div {
+  padding: 30px;
+}
+
+.top-tag-outer-border {
+  margin: auto;
+  text-align: center;
+  margin: 50px;
+}
+.top-tag-inner-border {
+  width: 100px;
+  border: solid #5830e0 1px;
+  padding: 5px;
+  padding: 30px 10px 25px 10px;
+  border-radius: 35px;
+}
+.top-tag-text {
+  width: 100px;
+  border: solid #5830e0 2px;
+  padding: 15px 40px 15px 40px;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.tabs {
+  list-style: none;
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: solid #cecece 1px;
+}
+.tabs-item {
+  margin-right: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
