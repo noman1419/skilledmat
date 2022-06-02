@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    cpassword: {
+        type: String,
+        required: true,
+    },
 })
 
 const Auth = mongoose.model('auth', userSchema);
