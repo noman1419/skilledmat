@@ -48,6 +48,7 @@ const Register = () => {
             setStatus(error.response.status)
         })
     }
+
     return (
         <form>
             {

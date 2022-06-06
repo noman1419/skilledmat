@@ -5,11 +5,13 @@ import IconPassword from '../Assets/icons/password.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 const SignIn = () => {
     const [fieldData, setFieldData] = useState({
         email: "",
         password: "",
     })
+    const [cookies, setCookie] = useCookies(['access_token', 'refresh_token'])
     const history = useNavigate() //this is use to direct to home page after successfully login
     const [message, setMessage] = useState('Please fill in the fallowing information to sign in')
     const [status, setStatus] = useState(202) //code that we got from the api response came from the server and using to change the color of the warning
@@ -26,7 +28,12 @@ const SignIn = () => {
     }
     const login = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/login', fieldData).then(() => { history('/home') }).catch((err) => { setStatus(err.response.status); setMessage(err.response.data.err) })
+        await axios.post('http://localhost:5000/login', fieldData).then((res) => {
+            const tokenFromLogin = res.data.token;
+            setCookie("JWT", tokenFromLogin);
+            // axios.get('http://localhost:5000/home').then((res) => { console.log(res) }).catch(() => { console.log("error") })
+            history('./home');
+        }).catch((err) => { setStatus(err.response.status); setMessage(err.response.data.err) })
     }
     return (
         <form>

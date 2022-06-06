@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useStyle from "./Style";
 import { IoReorderThreeOutline } from "react-icons/io5";
-
+import axios from 'axios';
 import { Link, Outlet } from 'react-router-dom';
 const Navbar = () => {
     const [click, setClick] = useState(false);
@@ -16,6 +16,14 @@ const Navbar = () => {
         setClick(false)
     }
     const classes = useStyle();
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/home').then((res) => {
+            console.log(res.data)
+        })
+    }, []);
+
+
     return (
         <>
             <div className={classes.outeRoot}>

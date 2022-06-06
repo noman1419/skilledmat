@@ -1,6 +1,6 @@
 const express = require('express');
 const Auth = require('../model/userSchema');
-
+const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 router.post('/register', async (req, res) => {
@@ -19,20 +19,32 @@ router.post('/register', async (req, res) => {
                 const result = false;
                 return;
             }
+
             else {
                 const user = new Auth({ firstName, lastName, email, userName, password, cpassword, });
+                //creat token
+                const token = jwt.sign({ user_id: user._id },
+                    process.env.SECURITYKEY, {
+                    expiresIn: "2h",
+                }
+                )
+                user.token = token;
+
+                // res.cookie("jwt", token,)
+                res.cookie('cookieName', token, { expires: new Date(Date.now() + 900000), httpOnly: true })
                 const register = await user.save()
                 if (register) {
-                    const result = true;
-                    res.status(202).json({ Message: "you are missing the fields" });
-                    console.log("user register successfully");
+                    res.status(202).json({ Message: "user register successfully" });
+                    console.log(register);
                     return;
                 }
             }
+
         } else {
             res.status(500).json({ err: "Password Does Not Match" });
             return;
         }
+
     }
 })
 router.post('/login', async (req, res) => {
@@ -51,7 +63,13 @@ router.post('/login', async (req, res) => {
             return;
         } else {
             console.log(userEmail);
-            res.status(202).json({ message: "User Logedin Successfully" });
+            const token = jwt.sign({ user_id: userEmail._id },
+                process.env.SECURITYKEY, {
+                expiresIn: "2h",
+            }
+            )
+            res.cookie('cookieName', '1', { expires: new Date(Date.now() + 900000), httpOnly: true })
+            res.status(202).json({ message: "User Logedin Successfully", token: token });
             return;
         }
     }
