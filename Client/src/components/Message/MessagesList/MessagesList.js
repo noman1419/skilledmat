@@ -1,6 +1,5 @@
 import React from 'react'
 import useStyle from './Style';
-import userImage from './Assets/img1.png'
 import Data from './MessageListApi';
 import { Link } from 'react-router-dom';
 const MessagesList = () => {

@@ -2,8 +2,20 @@ import React, { useState, useEffect } from 'react'
 import useStyle from "./Style";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import axios from 'axios';
+import { useCookies } from 'react-cookie'
 import { Link, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+
+
+
 const Navbar = () => {
+    const [value, setValue] = useState({})
+    const [cookies] = useCookies();
+    const history = useNavigate();
+    useEffect(() => {
+        axios.post('http://localhost:5000/home', cookies).then((res) => { setValue(res.data.res) }).catch(() => { history('/'); })
+    }, [])
+    const { firstName, lastName } = value;
     const [click, setClick] = useState(false);
     const [expend, setExpend] = useState("none")
     const setDropDown = () => {
@@ -16,12 +28,6 @@ const Navbar = () => {
         setClick(false)
     }
     const classes = useStyle();
-
-    useEffect(() => {
-        axios.get('http://localhost:5000/home').then((res) => {
-            console.log(res.data)
-        })
-    }, []);
 
 
     return (
@@ -45,7 +51,7 @@ const Navbar = () => {
                         <IoReorderThreeOutline className={classes.navToggle} onClick={handleChange} />
                     </div>
                     <div className={classes.accountRoot} onClick={setDropDown}>
-                        <span >Hamza Faham</span>
+                        <span >{firstName + " " + lastName}</span>
                         <ul className={classes.accountDropdownItems} style={{ display: expend }}>
                             <Link to="profile" style={{ textDecoration: "none", color: "black" }}>
                                 <li className={classes.accountDropdownItem}>My Profile</li>

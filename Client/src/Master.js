@@ -10,6 +10,7 @@ import Catogries from './components/Catogries/Catogries';
 import Notifications from './components/Notifications/Notifications';
 import Auth from './components/Auth/Auth';
 import Inbox from './components/Message/Inbox/Inbox';
+import Profile from './components/Profile/Profile';
 const theme = createMuiTheme({
     breakpoints: {
         values: {
@@ -36,6 +37,7 @@ const Master = () => {
                             <Route path='search' element={<Search />} />
                             <Route path='catogries' element={<Catogries />} />
                             <Route path='notifications' element={<Notifications />} />
+                            <Route path='profile' element={<Profile />} />
                         </Route>
                     </Routes>
                 </div>

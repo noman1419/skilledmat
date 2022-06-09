@@ -5,7 +5,6 @@ import IconFirstName from '../Assets/icons/firstname.png'
 import IconEmail from '../Assets/icons/email.png'
 import IconUserName from '../Assets/icons/username.png'
 import IconPassword from '../Assets/icons/password.png'
-import { Link } from 'react-router-dom'
 
 const Register = () => {
     const [fieldData, setFieldData] = useState({

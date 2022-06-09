@@ -31,7 +31,6 @@ const SignIn = () => {
         await axios.post('http://localhost:5000/login', fieldData).then((res) => {
             const tokenFromLogin = res.data.token;
             setCookie("JWT", tokenFromLogin);
-            // axios.get('http://localhost:5000/home').then((res) => { console.log(res) }).catch(() => { console.log("error") })
             history('./home');
         }).catch((err) => { setStatus(err.response.status); setMessage(err.response.data.err) })
     }
@@ -46,13 +45,13 @@ const SignIn = () => {
                 <div className='input-div' >
                     <div className='signin-input-root'>
                         <img className='signin-input-icon' src={IconUserName} />
-                        <input className='signin-input' type="text" placeholder="username" name="email" value={fieldData.email} onChange={handleChange} />
+                        <input className='signin-input' type="text" placeholder="Enter Email" name="email" value={fieldData.email} onChange={handleChange} />
                     </div>
                 </div>
                 <div className='input-div' >
                     <div className='signin-input-root' >
                         <img className='signin-input-icon' src={IconPassword} />
-                        <input className='signin-input' type="text" placeholder="password" name="password" value={fieldData.password} onChange={handleChange} />
+                        <input className='signin-input' type="text" placeholder="Password" name="password" value={fieldData.password} onChange={handleChange} />
                     </div>
                 </div>
             </div>
