@@ -39,7 +39,7 @@ const Navbar = () => {
                     <button className={classes.navBtnProtfolio}>Create portfolio</button>
                 </div>
                 <nav className={classes.navRoot}>
-                    <a href="#" className={classes.naveLogoName}><h1>UF Clasified</h1></a>
+                    <h1 className={classes.naveLogoName}>UF Clasified</h1>
                     <ul className={classes.naveManue}>
                         <Link to="/home" className={classes.navManueItem}><li>Home </li></Link>
                         <Link to="/home/message" className={classes.navManueItem}><li>Messages </li></Link>

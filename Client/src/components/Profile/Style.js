@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-
+import dummyImage from './Assets/dummy-person-01.png'
 const useStyle = makeStyles(theme => ({
     profileRoot: {
         maxWidth: "1000px",
@@ -10,20 +10,44 @@ const useStyle = makeStyles(theme => ({
         padding: "20px",
         boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
     },
-    profilePicture: {
-        maxWidth: "300px",
-        maxHeight: "300px",
+    profilePictureDiv: {
+        width: "300px",
+        height: "300px",
         borderRadius: "50%",
+        backgroundImage: `url(${dummyImage})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        transition: "0.3s",
+        "&:hover": {
+            backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(${dummyImage})`,
+        }
+    },
+    profileImg: {
+        cursor: "pointer",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "25px",
+        fontWeight: "bold",
+        color: "transparent",
+        borderRadius: "50%",
+        transition: "0.3s",
+        "&:hover": {
+            color: "white",
+        }
     },
     profileHeader: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         borderBottom: "solid gray 1px",
-
+        paddingBottom: "10px",
         [theme.breakpoints.down('xs')]: {
             flexDirection: "column",
-        }
+        },
     },
     nameUsernameRoot: {
         display: "flex",
