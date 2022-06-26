@@ -76,6 +76,9 @@ const useStyle = makeStyles(theme => ({
     },
     profileHeaderBtnRoot: {
         marginTop: "20px"
+    },
+    editPopupModulComponentRoot: {
+        padding: "20px", borderRadius: "10px", width: "90%", background: "white", position: "absolute", display: "flex", justifyContent: "center", border: "solid gray 1px", margin: "center"
     }
 }))
 export default useStyle;

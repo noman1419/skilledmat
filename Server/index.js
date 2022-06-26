@@ -3,6 +3,8 @@ const dotenv = require('dotenv')
 const router = require('./router/auth')
 const homeRoot = require('./router/homeRouter')
 const profileRoot = require('./router/profile')
+const profileImage = require('./router/profileImage')
+const EditUserRoot = require('./router/editUser')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 dotenv.config('./env');
@@ -14,6 +16,11 @@ require('./db/conn')
 app.use('/', router)
 app.use('/home', homeRoot)
 app.use('/profile', homeRoot)
+app.use('/edituser', EditUserRoot)
+
+
+app.use('/profileimage', profileImage)
+
 
 
 

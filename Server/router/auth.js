@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
             }
 
             else {
-                const user = new Auth({ firstName, lastName, email, userName, password, cpassword, });
+                const user = new Auth({ firstName, lastName, email, userName, password, cpassword });
                 //creat token
                 const token = jwt.sign({ user_id: user._id },
                     process.env.SECURITYKEY, {
@@ -62,7 +62,6 @@ router.post('/login', async (req, res) => {
             res.status(500).json({ err: "Email or Password incorrect" })
             return;
         } else {
-            console.log(userEmail);
             const token = jwt.sign({ user_id: userEmail._id },
                 process.env.SECURITYKEY, {
                 expiresIn: "2h",

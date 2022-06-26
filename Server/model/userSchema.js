@@ -28,10 +28,13 @@ const userSchema = new mongoose.Schema({
     token: {
         type: String,
     },
-    image: {
-        type: String,
+    image:
+    {
+        data: Buffer,
+        contentType: String
     }
 })
+
 
 const Auth = mongoose.model('auth', userSchema);
 

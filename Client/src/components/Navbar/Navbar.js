@@ -36,7 +36,7 @@ const Navbar = () => {
                 {/* Nav for big screen */}
                 <div style={{ display: "flex", padding: "10px 0", justifyContent: "flex-end", boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px" }}>
                     <button className={classes.navBtnInterview}>Interview</button>
-                    <button className={classes.navBtnProtfolio}>Create portfolio</button>
+                    <Link to="/home/portfolio"><button className={classes.navBtnProtfolio}>Create portfolio</button></Link>
                 </div>
                 <nav className={classes.navRoot}>
                     <h1 className={classes.naveLogoName}>UF Clasified</h1>
@@ -47,6 +47,7 @@ const Navbar = () => {
                         <Link to="/home/notifications" className={classes.navManueItem}><li>Notifications </li></Link>
                         <Link to="/home/catogries" className={classes.navManueItem}><li>Catogries</li></Link>
                     </ul>
+
                     <div>
                         <IoReorderThreeOutline className={classes.navToggle} onClick={handleChange} />
                     </div>
@@ -57,7 +58,7 @@ const Navbar = () => {
                                 <li className={classes.accountDropdownItem}>My Profile</li>
                             </Link>
                             <hr />
-                            <li className={classes.accountDropdownItem}>Logout</li>
+                            <Link to="/"> <li className={classes.accountDropdownItem}>Logout</li></Link>
                         </ul>
                     </div>
                     <div><button className={classes.navBtn}>Post a job</button></div>
