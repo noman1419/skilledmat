@@ -10,4 +10,5 @@ router.post('/profile', middleware, async (req, res) => {
     const userInfo = await Auth.findOne({ _id: user_id })
     res.status(202).json({ res: userInfo })
 })
+
 module.exports = router;

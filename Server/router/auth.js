@@ -27,9 +27,9 @@ router.post('/register', async (req, res) => {
                     process.env.SECURITYKEY, {
                     expiresIn: "2h",
                 }
+
                 )
                 user.token = token;
-
                 // res.cookie("jwt", token,)
                 res.cookie('cookieName', token, { expires: new Date(Date.now() + 900000), httpOnly: true })
                 const register = await user.save()
@@ -67,6 +67,7 @@ router.post('/login', async (req, res) => {
                 expiresIn: "2h",
             }
             )
+
             res.cookie('cookieName', '1', { expires: new Date(Date.now() + 900000), httpOnly: true })
             res.status(202).json({ message: "User Logedin Successfully", token: token });
             return;

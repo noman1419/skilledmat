@@ -5,6 +5,7 @@ const homeRoot = require('./router/homeRouter')
 const profileRoot = require('./router/profile')
 const profileImage = require('./router/profileImage')
 const EditUserRoot = require('./router/editUser')
+const portfolioRoot = require('./router/portfolio')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 dotenv.config('./env');
@@ -17,10 +18,8 @@ app.use('/', router)
 app.use('/home', homeRoot)
 app.use('/profile', homeRoot)
 app.use('/edituser', EditUserRoot)
-
-
 app.use('/profileimage', profileImage)
-
+app.use('/portfolio', portfolioRoot)
 
 
 
