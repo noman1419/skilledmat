@@ -6,8 +6,9 @@ import AddTages from './AddTages/AddTages';
 const Portfolio = () => {
     const classes = useStyles();
     const [cookies] = useCookies();
-    const array = ['html', 'css',]
-    console.log(cookies);
+    const [skills, setSkills] = useState([])
+
+    console.log(skills);
     const [values, setValues] = useState({
         firstName: "",
         lastName: "",
@@ -19,8 +20,8 @@ const Portfolio = () => {
         country: "",
         postalCode: "",
         field: "",
-        skills: array
     });
+
     const handleChange = (e) => {
         const { value, name } = e.target;
         setValues((prev) => {
@@ -30,9 +31,14 @@ const Portfolio = () => {
             }
         })
     }
+    const callback = (tags) => {
+        setSkills(tags)
+        alert(tags);
+    }
     const Data = {
         data: values,
         token: cookies.JWT,
+        skills
     }
     const submitData = async (e) => {
         e.preventDefault();
@@ -136,7 +142,7 @@ const Portfolio = () => {
                         />
                     </div>
                 </div>
-                <AddTages />
+                <AddTages parentCallBack={callback} />
                 <div className={classes.portfolioInputsDiv}>
                     <button className={classes.createPortfolioBtn}>Create portfolio</button>
                 </div>
@@ -145,4 +151,4 @@ const Portfolio = () => {
     )
 }
 
-export default Portfolio
+export default Portfolio;

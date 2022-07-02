@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import useStyles from './Style'
-const AddTages = (prop) => {
+const AddTages = (props) => {
 
 
     const classes = useStyles();
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState([]);
+
     const handleChange = (e) => {
         if (e.key !== ',') return
         // Get the value of the input
@@ -16,11 +17,13 @@ const AddTages = (prop) => {
         // Clear the input
         e.target.value = ''
     }
+
     const removeTag = (index) => {
         setTags(tags.filter((pn, val) => {
             return val !== index;
         }))
     }
+
     return (
         <div className={classes.addTageRoot}>
             <span>Skills:</span>
@@ -28,14 +31,37 @@ const AddTages = (prop) => {
                 {
                     tags.map((val, index) => {
                         return (
-                            <span key={index} style={{ background: "green", color: "white", borderRadius: "2px", padding: "2px 10px", margin: "5px", display: "flex", flexDirection: "row", }}><span>{val}</span><span style={{ marginLeft: "17px", fontWeight: "bold" }} onClick={() => { removeTag(index) }}>x</span></span>
+                            <span key={index} class={classes.singleTag} ><span>{val}</span><span className={classes.singleTagClose} onClick={() => { removeTag(index) }}>x</span></span>
                         )
                     })
                 }
                 <input type="text" className={classes.theRealInput} onKeyDown={handleChange} placeholder='Add Skills .....' />
             </div>
+            <div style={{ width: "85%", margin: "auto", display: "flex", justifyContent: "flex-end" }}> <p onClick={() => props.parentCallBack(tags)} style={{ background: "#5830E0", color: "white", padding: "10px 30px", marginTop: "5px", borderRadius: "5px", cursor: "pointer" }}>Save Skills</p></div>
         </div>
     )
 }
 
 export default AddTages
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

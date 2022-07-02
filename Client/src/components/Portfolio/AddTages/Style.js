@@ -16,6 +16,19 @@ const useStyles = makeStyles(theme => ({
     theRealInput: {
         border: "none",
         outline: "none",
+    },
+    singleTag: {
+        background: "#5830E0",
+        color: "white",
+        borderRadius: "2px",
+        padding: "2px 10px",
+        margin: "5px",
+        display: "flex",
+        flexDirection: "row",
+    },
+    singleTagClose: {
+        marginLeft: "17px",
+        fontWeight: "bold"
     }
 }))
 
