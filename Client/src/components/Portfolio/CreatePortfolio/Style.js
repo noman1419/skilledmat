@@ -32,6 +32,15 @@ const useStyles = makeStyles(theme => ({
         border: "solid black 1px",
 
     },
+    educationInput: {
+        width: "40%",
+        padding: "10px",
+        borderRadius: "5px",
+        margin: "0 10px",
+        outline: "none",
+        border: "none",
+        border: "solid black 1px",
+    },
     createPortfolioBtn: {
         width: "80%",
         padding: "10px",

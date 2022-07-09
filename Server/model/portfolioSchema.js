@@ -45,16 +45,13 @@ const portfolioSchema = new mongoose.Schema({
         required: true,
     },
     skills: [{ type: String, }],
-    education: [
-        {
-            school: {
-                type: String,
-            },
-            course: {
-                type: String
-            }
-        }
-    ]
+    education:
+    {
+        type: Object,
+    },
+    previousProjects: {
+        type: String
+    }
 })
 
 const portfolio = mongoose.model('portfolio', portfolioSchema);
