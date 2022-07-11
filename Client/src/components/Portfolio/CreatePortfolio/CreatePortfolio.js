@@ -59,8 +59,7 @@ const CreatePortfolio = () => {
         education,
     }
     const submitData = async (e) => {
-        e.preventDefault();
-        await axios.post('http://localhost:5000/portfolio', Data).then(() => { console.log("request is successfull") }).catch(() => { console.log("request not successfull"); })
+        await axios.post('http://localhost:5000/createportfolio', Data).then(() => { console.log("request is successfull") }).catch(() => { console.log("request not successfull"); })
     }
 
     return (

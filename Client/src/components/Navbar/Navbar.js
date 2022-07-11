@@ -9,11 +9,22 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Navbar = () => {
-    const [value, setValue] = useState({})
+    const [portfolioBtn, setPortfolioBtn] = useState("------")
+    const [value, setValue] = useState({
+        firstName: "",
+        lastName: "",
+    })
     const [cookies] = useCookies();
+    const token = cookies.JWT;
     const history = useNavigate();
     useEffect(() => {
-        axios.post('http://localhost:5000/home', cookies).then((res) => { setValue(res.data.res) }).catch(() => { history('/'); })
+        axios.post('http://localhost:5000/home', cookies).then((res) => { setValue(res.data.res) }).catch(() => { history('/'); });
+
+        axios.get('http://localhost:5000/myportfolio', {
+            headers: {
+                token
+            }
+        }).then((res) => { setPortfolioBtn("My Portfolio"); console.log("alredy exist") }).catch(() => { setPortfolioBtn("Create Portfolio"); console.log("does not exist") })
     }, [])
     const { firstName, lastName } = value;
     const [click, setClick] = useState(false);
@@ -36,7 +47,7 @@ const Navbar = () => {
                 {/* Nav for big screen */}
                 <div style={{ display: "flex", padding: "10px 0", justifyContent: "flex-end", boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px" }}>
                     <button className={classes.navBtnInterview}>Interview</button>
-                    <Link to="/home/createportfolio"><button className={classes.navBtnProtfolio}>Create portfolio</button></Link>
+                    <Link to="/home/createportfolio"><button className={classes.navBtnProtfolio}>{portfolioBtn}</button></Link>
                 </div>
                 <nav className={classes.navRoot}>
                     <h1 className={classes.naveLogoName}>SkilledMat</h1>

@@ -11,7 +11,7 @@ router.get('/myportfolio', async (req, res) => {
     const { user_id } = jwt.verify(token, process.env.SECURITYKEY)
     const userInfo = await Portfolio.findOne({ portfolio_id: user_id })
     if (userInfo) {
-        res.status(200).json({ message: "it is okh dear on my portfolios" })
+        res.status(200).json({ message: userInfo })
         return;
     }
     else {
