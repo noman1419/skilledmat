@@ -14,7 +14,6 @@ const useStyle = makeStyles(theme => ({
         width: "300px",
         height: "300px",
         borderRadius: "50%",
-        backgroundImage: `url(${dummyImage})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         transition: "0.3s",

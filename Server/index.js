@@ -23,8 +23,8 @@ app.use('/profileimage', profileImage)
 app.use('/createportfolio', createPortfolioRoot)
 app.use('/myportfolio', myPortfolioRoot)
 
-
-
+app.use(express.static('./uploads'));
+app.use('/uploads', express.static('uploads'));
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`server is running on ${PORT}`));
 

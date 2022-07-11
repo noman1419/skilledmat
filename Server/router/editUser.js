@@ -12,7 +12,7 @@ router.post('/edituser', async (req, res) => {
     const { user_id } = jwt.verify(token, process.env.SECURITYKEY)
     const saved = await Auth.updateOne({ _id: user_id }, { $set: { firstName, lastName, userName } });
     if (saved) {
-        console.log("user data updated");
+        console.log("user data updated " + saved);
     } else {
         console.log("data did not updated successfully");
     }

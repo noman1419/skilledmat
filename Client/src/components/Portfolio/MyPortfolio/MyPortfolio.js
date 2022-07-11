@@ -8,7 +8,6 @@ const MyPortfolio = (props) => {
         <h2>{props.value.userName}</h2>
         <h2>{props.value.email}</h2>
         <h2>{props.value.city}</h2>
-        <h2>{props.value.phone}</h2>
     </>
     )
 }
