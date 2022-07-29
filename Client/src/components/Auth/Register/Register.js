@@ -31,7 +31,7 @@ const Register = () => {
 
     const submitValue = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/register', fieldData).then(() => {
+        await axios.post(`${process.env.REACT_APP_DOMAIN}/register`, fieldData).then(() => {
             setMessage("Registered Successfully");
             setStatus(202);
             setFieldData({

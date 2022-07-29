@@ -28,7 +28,7 @@ const SignIn = () => {
     }
     const login = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/login', fieldData).then((res) => {
+        await axios.post(`${process.env.REACT_APP_DOMAIN}/login`, fieldData).then((res) => {
             const tokenFromLogin = res.data.token;
             setCookie("JWT", tokenFromLogin);
             history('./home');

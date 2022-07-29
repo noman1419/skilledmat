@@ -7,8 +7,10 @@ const profileImage = require('./router/profileImage')
 const EditUserRoot = require('./router/editUser')
 const createPortfolioRoot = require('./router/createPortfolio')
 const myPortfolioRoot = require('./router/myPortfolio')
+const postStoryRoot = require('./router/postStory')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+
 dotenv.config('./env');
 const app = express();
 app.use(cookieParser());
@@ -22,9 +24,12 @@ app.use('/edituser', EditUserRoot)
 app.use('/profileimage', profileImage)
 app.use('/createportfolio', createPortfolioRoot)
 app.use('/myportfolio', myPortfolioRoot)
+app.use('/poststory', postStoryRoot)
+
 
 app.use(express.static('./uploads'));
 app.use('/uploads', express.static('uploads'));
+app.use('/storyImages', express.static('storyImages'));
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`server is running on ${PORT}`));
 

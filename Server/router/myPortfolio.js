@@ -1,11 +1,12 @@
-const router = require('./auth');
+const express = require('express');
+const router = express.Router();
 const Auth = require('../model/userSchema');
 const Portfolio = require('../model/portfolioSchema');
 const jwt = require('jsonwebtoken')
 const middleware = require('../middleware');
 const multer = require('multer');
 
-router.get('/myportfolio', async (req, res) => {
+router.get('/', async (req, res) => {
     const token = req.headers.token;
 
     const { user_id } = jwt.verify(token, process.env.SECURITYKEY)

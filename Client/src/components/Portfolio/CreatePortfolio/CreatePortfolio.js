@@ -59,7 +59,7 @@ const CreatePortfolio = () => {
         education,
     }
     const submitData = async (e) => {
-        await axios.post('http://localhost:5000/createportfolio', Data).then(() => { console.log("request is successfull") }).catch(() => { console.log("request not successfull"); })
+        await axios.post(`${process.env.REACT_APP_DOMAIN}/createportfolio`, Data).then(() => { console.log("request is successfull") }).catch(() => { console.log("request not successfull"); })
     }
 
     return (

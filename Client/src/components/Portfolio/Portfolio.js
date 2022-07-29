@@ -9,7 +9,7 @@ const Portfolio = () => {
     const [data, setData] = useState({});
     const token = cookies.JWT
     useEffect(() => {
-        axios.get('http://localhost:5000/myportfolio', {
+        axios.get(`${process.env.REACT_APP_DOMAIN}/myportfolio`, {
             headers: {
                 token
             }

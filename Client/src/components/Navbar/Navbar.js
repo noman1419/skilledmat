@@ -18,9 +18,9 @@ const Navbar = () => {
     const token = cookies.JWT;
     const history = useNavigate();
     useEffect(() => {
-        axios.post('http://localhost:5000/home', cookies).then((res) => { setValue(res.data.res) }).catch(() => { history('/'); });
+        axios.post(`${process.env.REACT_APP_DOMAIN}/home`, cookies).then((res) => { setValue(res.data.res) }).catch(() => { history('/'); });
 
-        axios.get('http://localhost:5000/myportfolio', {
+        axios.get(`${process.env.REACT_APP_DOMAIN}/myportfolio`, {
             headers: {
                 token
             }
@@ -47,7 +47,7 @@ const Navbar = () => {
                 {/* Nav for big screen */}
                 <div style={{ display: "flex", padding: "10px 0", justifyContent: "flex-end", boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px" }}>
                     <button className={classes.navBtnInterview}>Interview</button>
-                    <Link to="/home/createportfolio"><button className={classes.navBtnProtfolio}>{portfolioBtn}</button></Link>
+                    <Link to="/home/portfolio"><button className={classes.navBtnProtfolio}>{portfolioBtn}</button></Link>
                 </div>
                 <nav className={classes.navRoot}>
                     <h1 className={classes.naveLogoName}>SkilledMat</h1>

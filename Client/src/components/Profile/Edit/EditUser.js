@@ -22,7 +22,7 @@ const EditUser = (props) => {
         })
     }
     const saveValues = async () => {
-        await axios.post('http://localhost:5000/edituser', { cookies, val }).then((res) => { console.log(res.data.res) }).catch(() => { console.log("error saving data"); })
+        await axios.post(`${process.env.REACT_APP_DOMAIN}/edituser`, { cookies, val }).then((res) => { console.log(res.data.res) }).catch(() => { console.log("error saving data"); })
     }
     return (
         <div>

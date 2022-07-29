@@ -1,4 +1,5 @@
-const router = require('./auth');
+const express = require('express');
+const router = express.Router();
 const Auth = require('../model/userSchema');
 const jwt = require('jsonwebtoken')
 const multer = require('multer');
@@ -23,60 +24,27 @@ var storage = multer.diskStorage({
         fileName = Date.now() + '-' + file.originalname
     }
 })
+
 var upload = multer({ storage: storage }).single('file')
-// const upload = multer({ storage: storage }).single("testImage");
 
-router.post('/profileimage', async (req, res) => {
-    // console.log(req);
 
+router.post('/', async (req, res) => {
+    const token = req.headers.token;
+    const { user_id } = jwt.verify(token, process.env.SECURITYKEY,)
     upload(req, res, async function (err) {
         if (err instanceof multer.MulterError) {
             return res.status(500).json(err)
         } else if (err) {
             return res.status(500).json(err)
         }
-
-        const updateimageTODATABAS = await Auth.updateOne({ firstName: "hamza" }, { $set: { image: fileName == null ? "iimagename" : fileName } });
+        const updateimageTODATABAS = await Auth.updateOne({ _id: user_id }, { $set: { image: fileName == null ? "iimagename" : fileName } });
         if (updateimageTODATABAS) {
             console.log(updateimageTODATABAS);
         } else {
             console.log("insert faild" + updateimageTODATABAS);
         }
         return res.status(200).send(req.file)
-
     })
-    // res.status(200).send("we can recieve the request but not the data from the front end properly")
-    // upload(req, res, async (err) => {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    //     else {
-    //         console.log();
-    //         const newImage = await Auth.updateOne({ firstName: "hamza" }, { $set: { image: { data: req.file.filename, contentType: 'image/png' } } });
-    //         if (newImage) {
-    //             res.status(202).json({ msg: "image updated successfully" })
-    //         } else {
-    //             res.status(500).json({ err: "some problem in uploading image" })
-    //             return;
-    //         }
-
-
-    //         const { cookies, imageName } = req.body;
-    //         console.log(imageName);
-
-    //         const { user_id } = jwt.verify(cookies.JWT, process.env.SECURITYKEY)
-    //         const addProfile = await Auth.updateOne({ _id: user_id }, { $set: { image: { data: req.file.filename, contentType: 'image/png' } } });
-    //         if (addProfile) {
-    //             console.log("updated", addProfile);
-    //         }
-
-
-    //         else {
-    //             console.log("erro in updation");
-    //         }
-    //         res.status(202).json({ res: imageName })
-    //     }
-    // })
 
 
 })

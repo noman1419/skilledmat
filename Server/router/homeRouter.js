@@ -1,10 +1,10 @@
 const express = require('express');
-const router = require('./auth');
+const router = express.Router();
 const Auth = require('../model/userSchema');
 const jwt = require('jsonwebtoken');
 const middleware = require('../middleware');
 
-router.post('/home', middleware, async (req, res) => {
+router.post('/', middleware, async (req, res) => {
     const token = req.body
     const { user_id } = jwt.verify(token.JWT, process.env.SECURITYKEY);
     // console.log(user_id);

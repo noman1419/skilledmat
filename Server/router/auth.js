@@ -9,8 +9,8 @@ router.post('/register', async (req, res) => {
         console.log('you are missing the fields');
         res.status(500).json({ err: "you are missing the fields" });
         return;
-
     } else {
+
         if (password == cpassword) {
             const userExist = await Auth.findOne({ email: email })
             if (userExist) {

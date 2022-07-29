@@ -39,7 +39,7 @@ const Master = () => {
                             <Route path='catogries' element={<Catogries />} />
                             <Route path='notifications' element={<Notifications />} />
                             <Route path='profile' element={<Profile />} />
-                            <Route path='createportfolio' element={<Portfolio />} />
+                            <Route path='portfolio' element={<Portfolio />} />
                         </Route>
                     </Routes>
                 </div>

@@ -17,6 +17,7 @@ const useStyle = makeStyles(theme => ({
         backgroundPosition: "center",
         backgroundSize: "cover",
         transition: "0.3s",
+        border: "solid gray 1px",
         "&:hover": {
             backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(${dummyImage})`,
         }
@@ -35,7 +36,10 @@ const useStyle = makeStyles(theme => ({
         borderRadius: "50%",
         transition: "0.3s",
         "&:hover": {
-            color: "white",
+            "&:hover": {
+                backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(http://localhost:5000/uploads/${dummyImage})`,
+            },
+            color: "#D3D3D3",
         }
     },
     profileHeader: {

@@ -1,11 +1,12 @@
-const router = require('./auth');
+const express = require('express');
+const router = express.Router();
 const Auth = require('../model/userSchema');
 const jwt = require('jsonwebtoken');
 
 // const middleware = require('../middleware');
 // const multer = require('multer');
 
-router.post('/edituser', async (req, res) => {
+router.post('/', async (req, res) => {
     const token = req.body.cookies.JWT;
     const { firstName, lastName, userName } = req.body.val;
 

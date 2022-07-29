@@ -21,7 +21,7 @@ const Auth = () => {
 
     }
     return (
-        <div className='root'>
+        <div className='auth-root'>
             <div className='form-root'>
                 <div className='form-block-outside'>
                     <div className='single-div'>
