@@ -36,7 +36,7 @@ router.post('/poststory', upload.array('images', 4), async (req, res) => {
     }
 
     console.log(images);
-    const postStory = new Post({ user_id, text, image: images, userName, profileImage: image });
+    const postStory = new Post({ user_id, text, image: images, userName, profileImage: image, });
     const postStoryDone = await postStory.save();
     if (postStoryDone) {
         console.log("story posted successfluuy");

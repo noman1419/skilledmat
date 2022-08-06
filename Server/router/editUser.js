@@ -2,16 +2,17 @@ const express = require('express');
 const router = express.Router();
 const Auth = require('../model/userSchema');
 const jwt = require('jsonwebtoken');
-
+const Post = require('../model/postSchema')
 // const middleware = require('../middleware');
 // const multer = require('multer');
 
 router.post('/', async (req, res) => {
     const token = req.body.cookies.JWT;
     const { firstName, lastName, userName } = req.body.val;
-
+    const newUserName = `${firstName} ${lastName}`
     const { user_id } = jwt.verify(token, process.env.SECURITYKEY)
     const saved = await Auth.updateOne({ _id: user_id }, { $set: { firstName, lastName, userName } });
+    await Post.updateMany({ user_id: user_id }, { $set: { userName: newUserName } })
     if (saved) {
         console.log("user data updated " + saved);
     } else {

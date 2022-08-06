@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import useStyle from './Style'
 import axios from 'axios'
+import { useCookies } from 'react-cookie'
 import { ThumbUp } from '@material-ui/icons'
 const Stories = () => {
     const classes = useStyle();
+    const [cookies] = useCookies();
     const [data, setData] = useState([]);
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_DOMAIN}/displaystory`).then((res) => { setData(res.data.data); console.log(res.data.data); }).catch(() => { console.log("did not get proper response") })
+        axios.get(`${process.env.REACT_APP_DOMAIN}/displaystory`, {
+            headers: {
+                user_token: cookies.JWT
+            }
+        }).then((res) => { setData(res.data.data); console.log(res.data.data); }).catch(() => { console.log("did not get proper response") })
     })
     return (
         <div>

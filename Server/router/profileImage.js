@@ -3,17 +3,9 @@ const router = express.Router();
 const Auth = require('../model/userSchema');
 const jwt = require('jsonwebtoken')
 const multer = require('multer');
+const Post = require('../model/postSchema')
 
-//odl code///////////////////////////////////////////////
-// const storage = multer.diskStorage({
-//     destination: 'uploads',
-//     filename: (req, file, cb) => {
-//         cb(null, file.originalname);
-//     }
 
-// })
-
-//new code///////////////////////////////////////////////
 var fileName = null
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -38,6 +30,7 @@ router.post('/', async (req, res) => {
             return res.status(500).json(err)
         }
         const updateimageTODATABAS = await Auth.updateOne({ _id: user_id }, { $set: { image: fileName == null ? "iimagename" : fileName } });
+        await Post.updateMany({ user_id: user_id }, { $set: { profileImage: fileName } })
         if (updateimageTODATABAS) {
             console.log(updateimageTODATABAS);
         } else {
