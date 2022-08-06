@@ -5,6 +5,12 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    profileImage: {
+        type: String
+    },
+    userName: {
+        type: String,
+    },
     date: {
         type: Date,
         default: Date.now,
@@ -13,12 +19,12 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    image: {
+    image: [{
         type: String,
-    },
+    }],
     likes: {
         type: Number,
-
+        default: 0,
     }
 })
 

@@ -8,6 +8,7 @@ const EditUserRoot = require('./router/editUser')
 const createPortfolioRoot = require('./router/createPortfolio')
 const myPortfolioRoot = require('./router/myPortfolio')
 const postStoryRoot = require('./router/postStory')
+const postJobRoot = require('./router/postJobRouter')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
@@ -24,10 +25,11 @@ app.use('/edituser', EditUserRoot)
 app.use('/profileimage', profileImage)
 app.use('/createportfolio', createPortfolioRoot)
 app.use('/myportfolio', myPortfolioRoot)
-app.use('/poststory', postStoryRoot)
+app.use('/', postStoryRoot)
+app.use('/postjob', postJobRoot)
 
 
-app.use(express.static('./uploads'));
+
 app.use('/uploads', express.static('uploads'));
 app.use('/storyImages', express.static('storyImages'));
 const PORT = process.env.PORT

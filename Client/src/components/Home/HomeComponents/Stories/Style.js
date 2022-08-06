@@ -11,7 +11,7 @@ const useStyle = makeStyles(theme => ({
         padding: "10px"
     },
     profileImage: {
-        height: "50%",
+        height: "50px",
         width: "50px",
         borderRadius: "50%",
     },

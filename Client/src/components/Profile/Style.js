@@ -22,6 +22,9 @@ const useStyle = makeStyles(theme => ({
             backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(${dummyImage})`,
         }
     },
+    overlay: {
+        background: "green", border: "solid green 1px"
+    },
     profileImg: {
         cursor: "pointer",
         width: "100%",

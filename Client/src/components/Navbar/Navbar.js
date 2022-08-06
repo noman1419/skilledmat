@@ -53,10 +53,10 @@ const Navbar = () => {
                     <h1 className={classes.naveLogoName}>SkilledMat</h1>
                     <ul className={classes.naveManue}>
                         <Link to="/home" className={classes.navManueItem}><li>Home </li></Link>
-                        <Link to="/home/message" className={classes.navManueItem}><li>Messages </li></Link>
-                        <Link to="/home/search" className={classes.navManueItem}><li>Search </li></Link>
-                        <Link to="/home/notifications" className={classes.navManueItem}><li>Notifications </li></Link>
-                        <Link to="/home/catogries" className={classes.navManueItem}><li>Catogries</li></Link>
+                        <Link to="message" className={classes.navManueItem}><li>Messages </li></Link>
+                        <Link to="search" className={classes.navManueItem}><li>Search </li></Link>
+                        <Link to="notifications" className={classes.navManueItem}><li>Notifications </li></Link>
+                        <Link to="catogries" className={classes.navManueItem}><li>Catogries</li></Link>
                     </ul>
 
                     <div>
@@ -72,7 +72,7 @@ const Navbar = () => {
                             <Link to="/"> <li className={classes.accountDropdownItem}>Logout</li></Link>
                         </ul>
                     </div>
-                    <div><button className={classes.navBtn}>Post a job</button></div>
+                    <div><Link to='postjob'><button className={classes.navBtn}>Post a job</button></Link></div>
                 </nav>
                 {/* Nav For Mobile Screen */}
                 {

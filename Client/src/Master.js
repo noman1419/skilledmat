@@ -12,6 +12,7 @@ import Auth from './components/Auth/Auth';
 import Inbox from './components/Message/Inbox/Inbox';
 import Profile from './components/Profile/Profile';
 import Portfolio from './components/Portfolio/Portfolio';
+import PostJob from './components/PostJob/PostJob';
 const theme = createMuiTheme({
     breakpoints: {
         values: {
@@ -40,6 +41,7 @@ const Master = () => {
                             <Route path='notifications' element={<Notifications />} />
                             <Route path='profile' element={<Profile />} />
                             <Route path='portfolio' element={<Portfolio />} />
+                            <Route path='postjob' element={<PostJob />} />
                         </Route>
                     </Routes>
                 </div>
