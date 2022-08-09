@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 router.post('/register', async (req, res) => {
-    const { firstName, lastName, userName, email, password, cpassword } = req.body;
-    if (!firstName || !lastName || !userName || !email || !password || !cpassword) {
+    const { name, userName, email, password, cpassword } = req.body;
+    if (!name || !userName || !email || !password || !cpassword) {
         console.log('you are missing the fields');
         res.status(500).json({ err: "you are missing the fields" });
         return;
@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
             }
 
             else {
-                const user = new Auth({ firstName, lastName, email, userName, password, cpassword });
+                const user = new Auth({ name, email, userName, password, cpassword });
                 //creat token
                 const token = jwt.sign({ user_id: user._id },
                     process.env.SECURITYKEY, {

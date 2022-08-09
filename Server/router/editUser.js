@@ -8,11 +8,10 @@ const Post = require('../model/postSchema')
 
 router.post('/', async (req, res) => {
     const token = req.body.cookies.JWT;
-    const { firstName, lastName, userName } = req.body.val;
-    const newUserName = `${firstName} ${lastName}`
+    const { name, userName } = req.body.val;
     const { user_id } = jwt.verify(token, process.env.SECURITYKEY)
-    const saved = await Auth.updateOne({ _id: user_id }, { $set: { firstName, lastName, userName } });
-    await Post.updateMany({ user_id: user_id }, { $set: { userName: newUserName } })
+    const saved = await Auth.updateOne({ _id: user_id }, { $set: { name, userName } });
+    await Post.updateMany({ user_id: user_id }, { $set: { userName: name } })
     if (saved) {
         console.log("user data updated " + saved);
     } else {

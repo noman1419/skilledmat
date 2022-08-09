@@ -20,25 +20,19 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single('file')
 
 
-router.post('/', async (req, res) => {
+router.post('/', upload, async (req, res) => {
     const token = req.headers.token;
     const { user_id } = jwt.verify(token, process.env.SECURITYKEY,)
-    upload(req, res, async function (err) {
-        if (err instanceof multer.MulterError) {
-            return res.status(500).json(err)
-        } else if (err) {
-            return res.status(500).json(err)
-        }
-        const updateimageTODATABAS = await Auth.updateOne({ _id: user_id }, { $set: { image: fileName == null ? "iimagename" : fileName } });
-        await Post.updateMany({ user_id: user_id }, { $set: { profileImage: fileName } })
-        if (updateimageTODATABAS) {
-            console.log(updateimageTODATABAS);
-        } else {
-            console.log("insert faild" + updateimageTODATABAS);
-        }
-        return res.status(200).send(req.file)
-    })
 
-
+    const updateimageTODATABAS = await Auth.updateOne({ _id: user_id }, { $set: { image: req.file.filename } });
+    await Post.updateMany({ user_id: user_id }, { $set: { profileImage: req.file.filename } })
+    if (updateimageTODATABAS) {
+        console.log(updateimageTODATABAS);
+    } else {
+        console.log("insert faild" + updateimageTODATABAS);
+    }
+    return res.status(200).send(req.file)
 })
+
+//})
 module.exports = router;

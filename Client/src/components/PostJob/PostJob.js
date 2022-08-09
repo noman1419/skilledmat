@@ -5,7 +5,7 @@ import axios from 'axios'
 import useStyles from './Style.js';
 import reactHtmlParser from 'react-html-parser'
 import { useCookies } from 'react-cookie';
-const PostJob = () => {
+const PostJob = (props) => {
 
     const classes = useStyles();
     const [cookies] = useCookies();

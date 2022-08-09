@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv')
-const router = require('./router/auth')
+const authRoot = require('./router/auth')
 const homeRoot = require('./router/homeRouter')
 const profileRoot = require('./router/profile')
 const profileImage = require('./router/profileImage')
@@ -11,22 +11,24 @@ const postStoryRoot = require('./router/postStory')
 const postJobRoot = require('./router/postJobRouter')
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-
+const searchRoot = require('./router/search')
 dotenv.config('./env');
 const app = express();
 app.use(cookieParser());
 app.use(express.json())
 app.use(cors())
 require('./db/conn')
-app.use('/', router)
+app.use('/', authRoot)
 app.use('/home', homeRoot)
-app.use('/profile', homeRoot)
+app.use('/', profileRoot)
+
 app.use('/edituser', EditUserRoot)
 app.use('/profileimage', profileImage)
 app.use('/createportfolio', createPortfolioRoot)
 app.use('/myportfolio', myPortfolioRoot)
 app.use('/', postStoryRoot)
 app.use('/postjob', postJobRoot)
+app.use('/search', searchRoot)
 
 
 

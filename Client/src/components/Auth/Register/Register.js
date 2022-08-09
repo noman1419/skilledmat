@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import './Register.css'
 import axios from 'axios';
-import IconFirstName from '../Assets/icons/firstname.png'
+import IconName from '../Assets/icons/firstname.png'
 import IconEmail from '../Assets/icons/email.png'
 import IconUserName from '../Assets/icons/username.png'
 import IconPassword from '../Assets/icons/password.png'
 
 const Register = () => {
     const [fieldData, setFieldData] = useState({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
         userName: "",
         password: "",
@@ -35,8 +34,7 @@ const Register = () => {
             setMessage("Registered Successfully");
             setStatus(202);
             setFieldData({
-                firstName: "",
-                lastName: "",
+                name: "",
                 email: "",
                 userName: "",
                 password: "",
@@ -59,15 +57,8 @@ const Register = () => {
                 <div className='input-div' >
 
                     <div className='register-input-root'>
-                        <img className='register-input-icon' src={IconFirstName} alt="icon" />
-                        <input className='register-input' name="firstName" value={fieldData.firstName} type="text" placeholder="first name" onChange={handleChange} />
-                    </div>
-                </div>
-                <div className='input-div' >
-
-                    <div className='register-input-root'>
-                        <img className='register-input-icon' src={IconFirstName} alt="icon" />
-                        <input className='register-input' name="lastName" value={fieldData.lastName} type="text" placeholder="last name" onChange={handleChange} />
+                        <img className='register-input-icon' src={IconName} alt="icon" />
+                        <input className='register-input' name="name" value={fieldData.name} type="text" placeholder="Enter Your Name" onChange={handleChange} />
                     </div>
                 </div>
                 <div className='input-div' >

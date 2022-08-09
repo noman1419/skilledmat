@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from "./components/Navbar/Navbar";
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
@@ -13,6 +13,7 @@ import Inbox from './components/Message/Inbox/Inbox';
 import Profile from './components/Profile/Profile';
 import Portfolio from './components/Portfolio/Portfolio';
 import PostJob from './components/PostJob/PostJob';
+import UserProfile from './components/UserProfile/UserProfile';
 const theme = createMuiTheme({
     breakpoints: {
         values: {
@@ -25,7 +26,10 @@ const theme = createMuiTheme({
     }
 })
 const Master = () => {
-
+    const [id, setId] = useState();
+    const callBack = (data) => {
+        setId(data)
+    }
     return (
         <div >
             <ThemeProvider theme={theme}>
@@ -36,12 +40,14 @@ const Master = () => {
                             <Route path='' element={<Home />} />
                             <Route path='message' element={<Message />} />
                             <Route path='inbox' element={<Inbox />} />
-                            <Route path='search' element={<Search />} />
+                            <Route path='search' element={<Search cb={callBack} />} />
                             <Route path='catogries' element={<Catogries />} />
                             <Route path='notifications' element={<Notifications />} />
                             <Route path='profile' element={<Profile />} />
                             <Route path='portfolio' element={<Portfolio />} />
                             <Route path='postjob' element={<PostJob />} />
+                            <Route path='userprofile' element={<UserProfile id={id} />} />
+
                         </Route>
                     </Routes>
                 </div>

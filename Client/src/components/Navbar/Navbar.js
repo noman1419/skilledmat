@@ -8,12 +8,9 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [portfolioBtn, setPortfolioBtn] = useState("------")
-    const [value, setValue] = useState({
-        firstName: "",
-        lastName: "",
-    })
+    const [value, setValue] = useState({})
     const [cookies] = useCookies();
     const token = cookies.JWT;
     const history = useNavigate();
@@ -26,7 +23,7 @@ const Navbar = () => {
             }
         }).then((res) => { setPortfolioBtn("My Portfolio"); console.log("alredy exist") }).catch(() => { setPortfolioBtn("Create Portfolio"); console.log("does not exist") })
     }, [])
-    const { firstName, lastName } = value;
+    const { name } = value;
     const [click, setClick] = useState(false);
     const [expend, setExpend] = useState("none")
     const setDropDown = () => {
@@ -57,13 +54,14 @@ const Navbar = () => {
                         <Link to="search" className={classes.navManueItem}><li>Search </li></Link>
                         <Link to="notifications" className={classes.navManueItem}><li>Notifications </li></Link>
                         <Link to="catogries" className={classes.navManueItem}><li>Catogries</li></Link>
+                        <Link to="catogries" className={classes.navManueItem}><li>{props.id}</li></Link>
                     </ul>
 
                     <div>
                         <IoReorderThreeOutline className={classes.navToggle} onClick={handleChange} />
                     </div>
                     <div className={classes.accountRoot} onClick={setDropDown}>
-                        <span >{firstName + " " + lastName}</span>
+                        <span >{name}</span>
                         <ul className={classes.accountDropdownItems} style={{ display: expend }}>
                             <Link to="profile" style={{ textDecoration: "none", color: "black" }}>
                                 <li className={classes.accountDropdownItem}>My Profile</li>

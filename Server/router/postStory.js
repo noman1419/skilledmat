@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage })
+
 router.post('/poststory', upload.array('images', 4), async (req, res) => {
     const { text, user_token } = req.body;
     console.log("token is ==>", user_token);
@@ -22,8 +23,7 @@ router.post('/poststory', upload.array('images', 4), async (req, res) => {
     console.log("User Id from the toke ===> ", user_id);
     const user = await Auth.findOne({ _id: user_id })
     console.log("user for the ID is", user)
-    const { firstName, lastName, image } = user;
-    const userName = `${firstName} ${lastName}`
+    const { name, image } = user;
     if (req.files === undefined) {
         console.log("image path is not define");
         var images = undefined;
@@ -36,7 +36,7 @@ router.post('/poststory', upload.array('images', 4), async (req, res) => {
     }
 
     console.log(images);
-    const postStory = new Post({ user_id, text, image: images, userName, profileImage: image, });
+    const postStory = new Post({ user_id, text, image: images, userName: name, profileImage: image, });
     const postStoryDone = await postStory.save();
     if (postStoryDone) {
         console.log("story posted successfluuy");
@@ -48,8 +48,18 @@ router.post('/poststory', upload.array('images', 4), async (req, res) => {
 })
 
 router.get('/displaystory', async (req, res) => {
+    const { user_token } = req.headers;
+    const { user_id } = jwt.verify(user_token, process.env.SECURITYKEY);
     const data = await Post.find();
-    res.status(200).json({ data })
+    console.log(data);
+    console.log("********************************************************8")
+    res.status(200).json({ data, user_id })
 })
 
+
+router.delete('/deletestory', async (req, res) => {
+    const { delete_id } = req.headers;
+    console.log(delete_id);
+    await Post.deleteOne({ _id: delete_id })
+})
 module.exports = router;
