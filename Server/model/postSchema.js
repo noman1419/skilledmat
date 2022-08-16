@@ -25,7 +25,12 @@ const postSchema = mongoose.Schema({
     likes: {
         type: Number,
         default: 0,
-    }
+    },
+    likersID: [{
+        type: String,
+    }],
+
+
 })
 
 const Post = mongoose.model('posts', postSchema);

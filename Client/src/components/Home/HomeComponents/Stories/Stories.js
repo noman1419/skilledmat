@@ -4,22 +4,28 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { ThumbUp } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
+import { Favorite } from '@material-ui/icons'
 const Stories = () => {
     const classes = useStyle();
     const [cookies] = useCookies();
     const [manue, setManue] = useState('none')
     const [data, setData] = useState([]);
+    const [likersID, setLikersID] = useState([])
     const [id, setID] = useState('');
     const [loader, setLoader] = useState(false)
     const [user_id, setuser_ID] = useState('')
-    const [deleteID, setDeleteID] = useState();
+    const [like, setLike] = useState("gray")
+    const [condation, setCondation] = useState(true)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_DOMAIN}/displaystory`, {
             headers: {
                 user_token: cookies.JWT
             },
-        }).then((res) => { setData(res.data.data); setuser_ID(res.data.user_id); setLoader(true) }).catch(() => { console.log("did not get proper response") })
+        }).then((res) => { setData(res.data.data); setuser_ID(res.data.user_id); setLoader(true) }).catch(() => { console.log("did not get proper response") });
+
+        axios.get(`${process.env.REACT_APP_DOMAIN}/updatelikes`).then((res) => { console.log(res.data); })
+
     }, [])
 
     function handleManueChange(id) {
@@ -35,17 +41,45 @@ const Stories = () => {
             return data._id !== id;
         })
 
-        setData(filteredData)
+        setData(filteredData);
+    }
+    const handleLikesIds = (val) => {
+        console.log(val);
+        setLike(val);
+    }
+    const handleLikeChange = async (likes, likeID,) => {
+        if (like === "gray") {
+            setLike("red")
+
+            var data = {
+                likes: likes + 1,
+                post_id: likeID,
+                likersID: user_id,
+                push: true
+
+            }
+        } else {
+            setLike("gray")
+
+            var data = {
+                likes: likes - 1,
+                post_id: likeID,
+                likersID: user_id,
+                push: false
+            }
+        }
+
+        await axios.post(`${process.env.REACT_APP_DOMAIN}/updatelikes`, data).then(() => { console.log("updated successfully") })
     }
     async function handleDeletePost(id) {
         setManue('none')
-        setDeleteID(id)
         await axios.delete(`${process.env.REACT_APP_DOMAIN}/deletestory/`, {
             headers: {
                 delete_id: id,
             }
         }).then(() => { console.log("post deleted successfully") });
     }
+
     return (
         <div>
             <div className={classes.storyRoot}>
@@ -53,7 +87,8 @@ const Stories = () => {
                     !loader ? <div style={{ width: "100%", height: "50vh", display: "flex", justifyContent: "center", alignItems: "center" }}><h1>Loading ...</h1></div> : <>
                         {
                             data.map((val) => {
-                                const profileImage = `${process.env.REACT_APP_DOMAIN}/uploads/${val.profileImage}`
+                                const profileImage = `${process.env.REACT_APP_DOMAIN}/uploads/${val.profileImage}`;
+
                                 return (<div>
                                     <div className={classes.singleStory}>
                                         <div className={classes.storyHeader}>
@@ -80,7 +115,6 @@ const Stories = () => {
                                             }
                                         </div>
                                         <p className={classes.storyDescription}>{val.text}</p>
-
                                         <div style={{ marginTop: "20px" }}>
                                             {
                                                 !val.image.length == 0 ?
@@ -97,7 +131,7 @@ const Stories = () => {
                                             }
                                         </div>
                                         <div style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "5px", borderTop: "solid #EAEAEA 1px", marginTop: "5px" }}>
-                                            <ThumbUp style={{ marginRight: "5px", color: "lightGray", cursor: "pointer" }} />({val.likes})
+                                            <Favorite style={{ marginRight: "5px", cursor: "pointer", color: like }} onClick={() => { handleLikeChange(val.likes, val._id,); }} onLoad={() => { setLikersID(val.likersID) }} />({val.likes})
                                         </div>
                                     </div>
                                 </div>)

@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const middleware = require('../middleware');
 
 
+
 router.post('/', middleware, async (req, res) => {
     const token = req.body
     const { user_id } = jwt.verify(token.JWT, process.env.SECURITYKEY);

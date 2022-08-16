@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
+
 router.post('/poststory', upload.array('images', 4), async (req, res) => {
     const { text, user_token } = req.body;
     console.log("token is ==>", user_token);
@@ -61,5 +62,20 @@ router.delete('/deletestory', async (req, res) => {
     const { delete_id } = req.headers;
     console.log(delete_id);
     await Post.deleteOne({ _id: delete_id })
+})
+
+router.post('/updatelikes', async (req, res) => {
+    const { likes, post_id, likersID, push } = req.body;
+    console.log(req.body)
+    if (push) {
+        var updatedData = await Post.updateOne({ _id: post_id }, { $set: { likes: likes, }, $push: { likersID: likersID } })
+            .then(console.log("updated successfully")).catch(() => { console.log("couldn't update"); })
+    } else {
+        var updatedData = await Post.updateOne({ _id: post_id }, { $set: { likes: likes, }, $pull: { likersID: likersID } })
+            .then(console.log("updated successfully")).catch(() => { console.log("couldn't update"); })
+    }
+    console.log(updatedData);
+
+    res.send("done really well");
 })
 module.exports = router;

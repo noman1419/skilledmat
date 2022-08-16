@@ -40,13 +40,13 @@ const Master = () => {
                             <Route path='' element={<Home />} />
                             <Route path='message' element={<Message />} />
                             <Route path='inbox' element={<Inbox />} />
-                            <Route path='search' element={<Search cb={callBack} />} />
+                            <Route path='search' element={<Search />} />
                             <Route path='catogries' element={<Catogries />} />
                             <Route path='notifications' element={<Notifications />} />
                             <Route path='profile' element={<Profile />} />
                             <Route path='portfolio' element={<Portfolio />} />
                             <Route path='postjob' element={<PostJob />} />
-                            <Route path='userprofile' element={<UserProfile id={id} />} />
+                            <Route path='userprofile/:userProfileID' element={<UserProfile />} />
 
                         </Route>
                     </Routes>

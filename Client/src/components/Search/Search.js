@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useStyles from './Style'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-const Search = (props) => {
+const Search = () => {
     const classes = useStyles();
     const [search, setSearch] = useState({
         name: "",
@@ -31,14 +31,6 @@ const Search = (props) => {
         await axios.post(`${process.env.REACT_APP_DOMAIN}/search`, search).then((res) => { setData(res.data.data); setLoader(''); console.log(res.data.data); }).catch(() => { console.log("did not get proper response") })
     }
 
-    async function sendIdOfUser(id) {
-        props.cb(id)
-        // console.log("id i am foing to send", id);
-        // const data = {
-        //     user_id: id
-        // }
-        // await axios.post(`${process.env.REACT_APP_DOMAIN}/userprofile`, data).then((res) => { console.log(res.data.res); });
-    }
     return (
         <div className={classes.searchRoot}>
             <form className={classes.searchBoxRoot} >
@@ -54,8 +46,8 @@ const Search = (props) => {
                     data.map((value) => {
                         const image = `${process.env.REACT_APP_DOMAIN}/uploads/${value.image}`
                         return (
-                            <Link to={`/home/userprofile`} style={{ textDecoration: "none", color: "black" }}>
-                                <div onClick={() => { sendIdOfUser(value._id) }} style={{ border: "solid green 1px", display: "flex", flexDirection: "row", alignItems: "center", padding: "10px", borderRadius: "5px" }}>
+                            <Link to={`/home/userprofile/${value._id}`} style={{ textDecoration: "none", color: "black" }}>
+                                <div style={{ border: "solid green 1px", display: "flex", flexDirection: "row", alignItems: "center", padding: "10px", borderRadius: "5px" }}>
                                     <img src={image} style={{ width: "50px", height: "50px", borderRadius: "50%", }} />
                                     <span style={{ marginLeft: "15px" }}>{value.name}</span>
                                     <span style={{ marginLeft: "auto", marginRight: "10px" }}>follow</span>

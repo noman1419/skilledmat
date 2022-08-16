@@ -4,19 +4,21 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { Edit, Settings } from '@material-ui/icons'
 import EditPopup from './Edit/EditUser'
-import Popup from "reactjs-popup";
-import dummyImage from './Assets/dummy-person-01.png'
+import { useParams } from 'react-router-dom'
 
-const UserProfile = (props) => {
+
+
+const UserProfile = () => {
     const [cookies] = useCookies();
+    const { userProfileID } = useParams();
+    console.log(userProfileID);
     const data = {
-        userId: props.id,
+        userId: userProfileID,
         token: cookies.JWT,
     }
     const [value, setValue] = useState({})
     const [load, setLoad] = useState(false)
     const [owner, setOwner] = useState(false)
-
     useEffect(() => {
         axios.post(`${process.env.REACT_APP_DOMAIN}/userprofile`, data).then((res) => { setValue(res.data.res); setOwner(res.data.owner); setLoad(true); console.log(res.data.res); }).catch(() => { console.log("some error on profile page"); })
     }, [])
@@ -29,9 +31,10 @@ const UserProfile = (props) => {
 
         const data = new FormData()
         data.append('file', image);
+        //this is to change the image ..... do ot get confuse
         await axios.post(`${process.env.REACT_APP_DOMAIN}/profileimage`, data, {
             headers: {
-                token: props.id
+                token: cookies.JWT
             }
         }).then((res) => { console.log(res.data.res); window.location.reload(true) }).catch((err) => { console.log(err.response); })
     }
@@ -81,7 +84,7 @@ const UserProfile = (props) => {
                                 </div>
                                 <div className={classes.profileHeaderBtnRoot}>
                                     <button className={classes.profileMessageBtn}>Message</button>
-                                    <button className={classes.profileFollowBtn}>Follow</button>
+                                    <button className={classes.profileFollowBtn}>Follow </button>
                                 </div>
                             </div>
                         </div>
