@@ -1,13 +1,15 @@
 import './App.css';
 import Master from './Master';
 import { BrowserRouter } from 'react-router-dom';
-
+import ChatContextProvider from './Context';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Master />
-      </BrowserRouter>
+      <ChatContextProvider>
+        <BrowserRouter>
+          <Master />
+        </BrowserRouter>
+      </ChatContextProvider>
     </div >
   );
 

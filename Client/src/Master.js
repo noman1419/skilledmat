@@ -6,7 +6,7 @@ import Home from './components/Home/Home';
 import Message from './components/Message/Message';
 import { Routes, Route } from 'react-router-dom';
 import Search from './components/Search/Search';
-import Catogries from './components/Catogries/Catogries';
+import Catogries from './components/Jobs/Jobs';
 import Notifications from './components/Notifications/Notifications';
 import Auth from './components/Auth/Auth';
 import Inbox from './components/Message/Inbox/Inbox';
@@ -41,7 +41,7 @@ const Master = () => {
                             <Route path='message' element={<Message />} />
                             <Route path='inbox' element={<Inbox />} />
                             <Route path='search' element={<Search />} />
-                            <Route path='catogries' element={<Catogries />} />
+                            <Route path='jobs' element={<Catogries />} />
                             <Route path='notifications' element={<Notifications />} />
                             <Route path='profile' element={<Profile />} />
                             <Route path='portfolio' element={<Portfolio />} />

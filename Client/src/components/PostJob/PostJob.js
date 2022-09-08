@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios'
@@ -10,9 +10,9 @@ const PostJob = (props) => {
     const classes = useStyles();
     const [cookies] = useCookies();
     const [value, setValue] = useState();
-    const [data, setData] = useState("");
+    const [data, setData] = useState();
     const handleValue = (e, editor) => {
-        const jobDescription = reactHtmlParser(editor.getData());
+        const jobDescription = editor.getData();
         setValue(jobDescription)
     }
     const handleSubmit = async () => {
@@ -25,6 +25,14 @@ const PostJob = (props) => {
             }
         })
     }
+    // useEffect(() => {
+    //     axios.post(`${process.env.REACT_APP_DOMAIN}/displayjobs`).then((res) => {
+    //         setData(res.data.jobs)
+    //         console.log(res.data);
+    //     }).catch(() => {
+    //         console.log("some response problem");
+    //     })
+    // }, [])
     return (
         <div className={classes.postJobRoot} style={{}}>
             <div>
@@ -39,9 +47,25 @@ const PostJob = (props) => {
                 onChange={handleValue}
             />
             <button onClick={handleSubmit} style={{ background: "lightgray", color: "black", fontWeight: "600", marginTop: "10px", border: "none", padding: "10px 40px" }}>Post Job</button>
-            <span>
-                {value}
-            </span>
+            {/* <span>
+                {
+                    data.map((val) => {
+                        return (<>
+                            <div style={{ border: "solid lightGray 1px", padding: "20px", margin: "10px" }}>
+                                {reactHtmlParser(val.job)}
+                                <button style={{
+                                    border: "none",
+                                    background: "#5830E0",
+                                    color: "white",
+                                    padding: "10px 25px 10px 25px",
+                                    fontWeight: "600",
+                                    cursor: "pointer",
+                                }}>Apply Now</button>
+                            </div>
+                        </>)
+                    })
+                }
+            </span> */}
         </div>
     )
 }

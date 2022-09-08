@@ -39,11 +39,9 @@ const useStyle = makeStyles(theme => ({
         borderRadius: "50%",
         transition: "0.3s",
         "&:hover": {
-            "&:hover": {
-                backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(http://localhost:5000/uploads/${dummyImage})`,
-            },
+            backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(http://localhost:5000/uploads/${dummyImage})`,
             color: "#D3D3D3",
-        }
+        },
     },
     profileHeader: {
         display: "flex",

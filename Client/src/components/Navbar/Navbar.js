@@ -50,11 +50,10 @@ const Navbar = (props) => {
                     <h1 className={classes.naveLogoName}>SkilledMat</h1>
                     <ul className={classes.naveManue}>
                         <Link to="/home" className={classes.navManueItem}><li>Home </li></Link>
+                        <Link to="jobs" className={classes.navManueItem}><li>Jobs</li></Link>
                         <Link to="message" className={classes.navManueItem}><li>Messages </li></Link>
                         <Link to="search" className={classes.navManueItem}><li>Search </li></Link>
                         <Link to="notifications" className={classes.navManueItem}><li>Notifications </li></Link>
-                        <Link to="catogries" className={classes.navManueItem}><li>Catogries</li></Link>
-                        <Link to="catogries" className={classes.navManueItem}><li>{props.id}</li></Link>
                     </ul>
 
                     <div>
@@ -77,9 +76,9 @@ const Navbar = (props) => {
                     click ? <nav className={classes.downNav}>
                         <ul className={classes.downNavManue}>
                             <Link to="/home" className={classes.downNavManueItem} onClick={clickManue}><li className={classes.downNavItemBackground}>Home </li></Link>
+                            <Link to="/home/jobs" className={classes.downNavManueItem} onClick={clickManue}><li className={classes.downNavItemBackground}>Jobs </li></Link>
                             <Link to="/home/message" className={classes.downNavManueItem} onClick={clickManue}><li className={classes.downNavItemBackground}>Messages </li></Link>
                             <Link to="/home/search" className={classes.downNavManueItem} onClick={clickManue}><li className={classes.downNavItemBackground}>Search </li></Link>
-                            <Link to="/home/catogrie" className={classes.downNavManueItem} onClick={clickManue}><li className={classes.downNavItemBackground}>Catogries </li></Link>
                             <Link to="/home/notifications" className={classes.downNavManueItem} onClick={clickManue}><li className={classes.downNavItemBackground}>Notifications </li></Link>
                         </ul>
                     </nav> : <></>

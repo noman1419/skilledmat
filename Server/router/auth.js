@@ -46,6 +46,7 @@ router.post('/register', async (req, res) => {
         }
 
     }
+
 })
 router.post('/login', async (req, res) => {
     //getting data from the request body of post

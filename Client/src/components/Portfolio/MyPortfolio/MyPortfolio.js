@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useStyles from './style'
 import { Grid } from '@material-ui/core'
 import PortfolioHeroImage from '../Assets/profile.png';
@@ -15,17 +15,24 @@ import { Public } from '@material-ui/icons';
 import { LocationCity } from '@material-ui/icons';
 import { Flag } from '@material-ui/icons';
 import PersnalInfoHero from '../persnalInfoImage.jpg'
+import dummyPicture from './Assets/dummy-person-01.png'
 import SkillsHero from './Assets/SkillsHero.png';
 import { Code } from '@material-ui/icons';
 const MyPortfolio = (props) => {
     const firstName = props.value.firstName;
     const lastName = props.value.lastName;
+    const skills = props.value.skills;
     const classes = useStyles()
     return (<div className={classes.myPortflioRoot}>
+
         <Grid container xs={12} className={classes.myPortfolioHeroRoot} style={{ border: "solid blue 3px" }}>
             <Grid item xs={6} className={classes.myPortfolioHeroImageRoot}
-                style={{ background: `url(${PortfolioHeroImage})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}
-            ></Grid>
+                style={{ background: `url(${dummyPicture})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}
+            >
+                <label form='portfolioHero' className={classes.portfolioHeroImg}>change
+                    <input type='file' id='portfolioHero' style={{ display: "none" }} />
+                </label>
+            </Grid>
             <Grid item xs={6} style={{ display: "flex", flexDirection: "column", padding: "20px", justifyContent: "center", alignItems: "flex-start" }}>
                 <span style={{ fontSize: "25px", fontWeight: "bold" }}>HI THERE</span>
                 <span style={{ fontSize: "30px", fontWeight: "bold" }}>I'M <span style={{ color: "#5830E0", textTransform: "uppercase", }}>{firstName + " " + lastName}</span></span>
@@ -60,9 +67,24 @@ const MyPortfolio = (props) => {
                 <Grid item xs={6} style={{ fontWeight: "600", display: "flex", flexDirection: "row", alignItems: "center" }}><Code style={{ color: "blue", marginRight: "10px" }} /><span> Postal Code:</span></Grid>
                 <Grid item xs={6}>{props.value.postalCode}</Grid>
             </Grid>
-            <Grid item xs={6} style={{ border: "solid green 1px", backgroundImage: `url(${PersnalInfoHero})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
+            <Grid item xs={6} style={{
+                border: "solid green 1px", backgroundImage: `url(${PersnalInfoHero})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center"
+            }}>
+                <label form='portfolioContactHero' className={classes.portfolioContactHero}>change
+                    <input type='file' id='portfolioContactHero' style={{ display: "none" }} />
+                </label>
             </Grid>
         </Grid>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <h3>Skills</h3>
+            <div style={{ display: "flex", }}>
+                {
+                    skills ? skills.map((val) => {
+                        return <span style={{ margin: "5px 10px", padding: "10px", border: "solid gray 1px", borderRadius: "10px" }}>{val}</span>
+                    }) : <></>
+                }
+            </div>
+        </div>
         <div className={classes.previousProjectRootDiv} style={{ border: "solid blue 3px", marginTop: "100px" }}>
             <Grid container style={{}}>
                 <Grid item xs={12} sm={6} style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", flexDirection: "column", padding: "60px", }}>

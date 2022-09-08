@@ -3,13 +3,22 @@ import useStyle from './Style'
 import UserImage from '../../Message/MessagesList/Assets/img1.png'
 import SendMessage from './SendMessage/SendMessage'
 import Data from './InboxApi'
+import { useContext } from 'react'
+import { chatContext } from '../../../Context'
+import io from 'socket.io-client'
+
+const socket = io.connect("http://localhost:5000");;
 const Inbox = () => {
+    const { name } = useContext(chatContext);
+    socket.on('reseveMessage', (data) => {
+        console.log(data.message);
+    })
     const classes = useStyle()
     return (
         <div className={classes.inboxRoot}>
             <div className={classes.inboxHeader}>
                 <img className={classes.inboxUserImage} src={UserImage} alt="user image" />
-                <span className={classes.inboxUserName}>Hamza Faham</span>
+                <span className={classes.inboxUserName}>{name}</span>
             </div>
             <div className={classes.inboxMessagesRoot}>
                 {

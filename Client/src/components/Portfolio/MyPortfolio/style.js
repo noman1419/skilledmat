@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
-import dummyImage from './Assets/four.jfif'
+import dummyImage from '../Assets/profile.png'
+
 const useStyles = makeStyles(theme => ({
     myPortflioRoot: {
         maxWidth: "1000px",
@@ -11,6 +12,38 @@ const useStyles = makeStyles(theme => ({
     },
     myPortfolioHeroRoot: {
         height: "80vh",
+    },
+    portfolioHeroImg: {
+        cursor: "pointer",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "25px",
+        fontWeight: "bold",
+        color: "transparent",
+        "&:hover": {
+            backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(http://localhost:5000/uploads/${dummyImage})`,
+            color: "#D3D3D3",
+        },
+    },
+    portfolioContactHero: {
+        cursor: "pointer",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "25px",
+        fontWeight: "bold",
+        color: "transparent",
+        "&:hover": {
+            backgroundImage: `linear-gradient(to right, rgba(50, 70, 80, 0.7), rgba(30, 20, 150, 0.7)),url(http://localhost:5000/uploads/${dummyImage})`,
+            color: "#D3D3D3",
+        },
     },
     myPortfolioHeroImageRoot: {
         borderTopRightRadius: "10px",

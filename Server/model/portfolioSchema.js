@@ -44,7 +44,9 @@ const portfolioSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    skills: [{ type: Array, }],
+    skills: [{
+        type: String
+    }],
     education:
     {
         type: Object,
